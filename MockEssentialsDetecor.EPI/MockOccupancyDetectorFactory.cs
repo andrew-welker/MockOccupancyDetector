@@ -11,14 +11,14 @@ using PepperDash.Essentials.Core;
 using PepperDash.Essentials.Core.Config;
 using PepperDash.Core;
 
-namespace EssentialsPluginTemplateEPI 
+namespace MockOccupancyDetector 
 {
     /// <summary>
     /// This class contains the necessary properties and methods required to function as an Essentials Plugin
     /// </summary>
-	public class EssentialsPluginFactory:EssentialsPluginDeviceFactory<EssentialsPluginTemplateDevice>
+	public class MockOccupancyDetectorPluginFactory:EssentialsPluginDeviceFactory<MockOccupancyDetectorDevice>
     {
-        public EssentialsPluginFactory()
+        public MockOccupancyDetectorPluginFactory()
         {
             // This string is used to define the minimum version of the
             // Essentials Framework required for this plugin
@@ -32,8 +32,8 @@ namespace EssentialsPluginTemplateEPI
 
         public override EssentialsDevice BuildDevice(DeviceConfig dc)
         {
-            var config = dc.Properties.ToObject<EssentialsPluginTemplatePropertiesConfig>();
-			var newDevice = new EssentialsPluginTemplateDevice(dc.Key, dc.Name, config);
+            var config = dc.Properties.ToObject<MockOccupancyDetectorPropertiesConfig>();
+			var newDevice = new MockOccupancyDetectorDevice(dc.Key, dc.Name, config);
 			return newDevice;
         }
 

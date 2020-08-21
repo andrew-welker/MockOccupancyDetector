@@ -5,9 +5,9 @@ using System.Text;
 using Crestron.SimplSharp;
 using PepperDash.Essentials.Core;
 
-namespace PDT.EssentialsPluginTemplate.EPI
+namespace MockOccupancyDetector
 {
-    public class EssentialsPluginTemplateBridgeJoinMap : JoinMapBaseAdvanced
+    public class MockOccupancyDetectorBridgeJoinMap : JoinMapBaseAdvanced
     {
         [JoinName("IsOnline")]
         public JoinDataComplete IsOnline = new JoinDataComplete(new JoinData {JoinNumber = 1, JoinSpan = 1},
@@ -19,7 +19,7 @@ namespace PDT.EssentialsPluginTemplate.EPI
             });
 
 
-        public EssentialsPluginTemplateBridgeJoinMap(uint joinStart):base(joinStart, typeof(EssentialsPluginTemplateBridgeJoinMap))
+        public MockOccupancyDetectorBridgeJoinMap(uint joinStart):base(joinStart, typeof(MockOccupancyDetectorBridgeJoinMap))
         {
             
         }

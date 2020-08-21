@@ -1,16 +1,16 @@
 ﻿using Crestron.SimplSharpPro.DeviceSupport;
 using Newtonsoft.Json;
-using PDT.EssentialsPluginTemplate.EPI;
+using MockOccupancyDetector;
 using PepperDash.Essentials.Core;
 using PepperDash.Essentials.Core.Bridges;
 using PepperDash.Core;
 
-namespace EssentialsPluginTemplateEPI
+namespace MockOccupancyDetector
 {
     /// <summary>
     /// Example of a plugin device
     /// </summary>
-    public class EssentialsPluginTemplateDevice : EssentialsDevice, IBridgeAdvanced
+    public class MockOccupancyDetectorDevice : EssentialsDevice, IBridgeAdvanced
     {
         /// <summary>
         /// Device Constructor.  Called by BuildDevice
@@ -18,7 +18,7 @@ namespace EssentialsPluginTemplateEPI
         /// <param name="key"></param>
         /// <param name="name"></param>
         /// <param name="config"></param>
-        public EssentialsPluginTemplateDevice(string key, string name, EssentialsPluginTemplatePropertiesConfig config)
+        public MockOccupancyDetectorDevice(string key, string name, MockOccupancyDetectorPropertiesConfig config)
             : base(key, name)
         {
 
@@ -43,14 +43,14 @@ namespace EssentialsPluginTemplateEPI
         public void LinkToApi(BasicTriList trilist, uint joinStart, string joinMapKey, EiscApiAdvanced bridge)
         {
             // Construct the default join map
-            var joinMap = new EssentialsPluginTemplateBridgeJoinMap(joinStart);
+            var joinMap = new MockOccupancyDetectorBridgeJoinMap(joinStart);
 
             // Attempt to get a custom join map if specified in config
             var joinMapSerialized = JoinMapHelper.GetJoinMapForDevice(joinMapKey);
 
             // If we find a custom join map, deserialize it
             if (!string.IsNullOrEmpty(joinMapSerialized))
-                joinMap = JsonConvert.DeserializeObject<EssentialsPluginTemplateBridgeJoinMap>(joinMapSerialized);
+                joinMap = JsonConvert.DeserializeObject<MockOccupancyDetectorBridgeJoinMap>(joinMapSerialized);
 
             //Checking if the bridge is null allows for backwards compatability with configurations that use EiscApi instead of EiscApiAdvanced
             if (bridge != null)

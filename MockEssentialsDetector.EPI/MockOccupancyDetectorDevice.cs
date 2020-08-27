@@ -5,13 +5,40 @@ using PepperDash.Essentials.Core;
 using PepperDash.Essentials.Core.Bridges;
 using PepperDash.Core;
 
+using Crestron.SimplSharp;
+
 namespace MockOccupancyDetector
 {
     /// <summary>
     /// Example of a plugin device
     /// </summary>
-    public class MockOccupancyDetectorDevice : EssentialsDevice, IBridgeAdvanced
+    public class MockOccupancyDetectorDevice : EssentialsDevice, IBridgeAdvanced, IOccupancyStatusProvider
     {
+        private bool _isOccupied;
+
+        public bool IsOccupied
+        {
+            get
+            {
+                return _isOccupied;
+            }
+            set
+            {
+                if (value != _isOccupied)
+                {
+                    _isOccupied = value;
+                    Debug.Console(1, this, "Mock Occupancy Detector State: {0}", _isOccupied);
+                    RoomIsOccupiedFeedback.FireUpdate();
+                }
+            }
+        }
+
+        #region IOccupancyStatusProvider Members
+
+        public BoolFeedback RoomIsOccupiedFeedback { get; private set; }
+
+        #endregion
+
         /// <summary>
         /// Device Constructor.  Called by BuildDevice
         /// </summary>
@@ -21,7 +48,23 @@ namespace MockOccupancyDetector
         public MockOccupancyDetectorDevice(string key, string name, MockOccupancyDetectorPropertiesConfig config)
             : base(key, name)
         {
+            RoomIsOccupiedFeedback = new BoolFeedback(() => IsOccupied);
 
+            CrestronConsole.AddNewConsoleCommand((s) => SetOccupiedStatus(s), "setoccupiedstate", 
+                "Sets the state of the mock occupancy detector [true/false]", ConsoleAccessLevelEnum.AccessOperator);
+        }
+
+        public void SetOccupiedStatus(string state)
+        {
+            bool s;
+            if (state == "true")
+                s = true;
+            else if (state == "false")
+                s = false;
+            else
+                return;
+
+            IsOccupied = s;
         }
 
         /// <summary>
@@ -63,5 +106,7 @@ namespace MockOccupancyDetector
 
             // Link all your feedbacks to joins here
         }
+
+
     }
 }

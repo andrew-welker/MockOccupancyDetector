@@ -25,7 +25,7 @@ namespace MockOccupancyDetector
             MinimumEssentialsFrameworkVersion = "1.6.1";
 
             //The strings defined in this list will be used in the configuration file to build the device in this plugin.
-            TypeNames = new List<string> {"essentialsPluginTemplateDevice"};
+            TypeNames = new List<string> {"mockOccupancyDetector"};
         }
 
         #region Overrides of EssentialsDeviceFactory<EssentialsPluginTemplateDevice>

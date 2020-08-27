@@ -1,6 +1,0 @@
-[submodule "EssentialsBuilds"]
-	path = EssentialsBuilds
-url=https://github.com/PepperDash/Essentials-Builds.git
-[submodule "Essentials-Builds"]
-	path = Essentials-Builds
-	url = https://github.com/PepperDash/Essentials-Builds.git

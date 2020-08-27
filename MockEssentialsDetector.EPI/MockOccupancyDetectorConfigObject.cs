@@ -15,7 +15,7 @@ namespace MockOccupancyDetector
     /// The BuildDevice method will attempt to deserialize the Properties object into this class.
     /// Populate with any necssary properties for your device
     /// </summary>
-	public class MockOccupancyDetectorPropertiesConfig 
+	public class MockOccupancyDetectorPropertiesConfig
 	{
         // Below are some example properties
 
